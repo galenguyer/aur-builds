@@ -43,7 +43,7 @@ http {
 run inital setup by copying in `constants.sh` and `setup.sh`, making `setup.sh` executable, and running `setup.sh`.
 
 add the following lines to /etc/pacman.conf. if you've updated constants.sh, make sure to update below
-```toml
+```ini
 [aur-builds]
 SigLevel = Optional TrustAll
 Server = file:///var/aur/repo
