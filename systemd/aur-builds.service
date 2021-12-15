@@ -1,0 +1,10 @@
+[Unit]
+Description=AUR Package Builds
+After=network.target
+
+[Service]
+User=aur
+WorkingDirectory=/var/aur
+ExecStart=/var/aur/build.sh
+
+Restart=never
