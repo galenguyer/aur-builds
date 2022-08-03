@@ -1,16 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source ./constants.sh
 
 echo "updating packages..."
-sudo pacman -Syyu --noconfirm
-sudo pacman -S base base-devel git --noconfirm
+sudo pacman -Syu --needed --noconfirm
+sudo pacman -S base base-devel git --needed --noconfirm
 
 echo "building aurutils..."
 cd /tmp
-curl --output aurutils.tar.gz https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz
-tar xf aurutils.tar.gz
+git clone https://aur.archlinux.org/aurutils.git
 cd aurutils
 makepkg --syncdeps --noconfirm
 mkdir -p "$REPO_ROOT"
 sudo pacman -U --noconfirm aurutils-*.pkg.tar.zst
-repo-add "$REPO_ROOT/$REPO_NAME.db.tar.zst"
+repo-add -s "$REPO_ROOT/$REPO_NAME.db.tar.zst"
